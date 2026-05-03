@@ -22,6 +22,8 @@ A cadela da {name1, Julie} tem {n1, 8} cachorros, dos quais {k1,3} têm manchas.
 - $k2 = range(2, 12)
 
 #conditions:
+- k1 < n1
+- k2 < n2
 - divides(n1 + n2, k1 + k2)
 - is_int(100 * (k1+k2) / (n1+n2))
 
