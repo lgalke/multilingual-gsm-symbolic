@@ -76,7 +76,7 @@
   },
   {
     "id": 15,
-    "question_annotated": "{name1, Jennifer}'s dog has {n1, 8} puppies, {k1,3} of which have spots. {name2, Brandon}'s dog has {n2,12} puppies, {k2,4} of which have spots. What percentage of all the puppies have spots?\n\n#init:\n- name1, name2 = sample(names, 2)\n- $n1 = range(4, 16)\n- $n2 = range(4, 20)\n- $k1 = range(2, 12)\n- $k2 = range(2, 12)\n\n#conditions:\n- divides(n1 + n2, k1 + k2)\n- is_int(100 * (k1+k2) / (n1+n2))\n\n#answer: int(100 * (k1+k2) / (n1+n2))",
+    "question_annotated": "{name1, Jennifer}'s dog has {n1, 8} puppies, {k1,3} of which have spots. {name2, Brandon}'s dog has {n2,12} puppies, {k2,4} of which have spots. What percentage of all the puppies have spots?\n\n#init:\n- name1, name2 = sample(names, 2)\n- $n1 = range(4, 16)\n- $n2 = range(4, 20)\n- $k1 = range(2, 12)\n- $k2 = range(2, 12)\n\n#conditions:\n- k1 < n1\n- k2 < n2\n- divides(n1 + n2, k1 + k2)\n- is_int(100 * (k1+k2) / (n1+n2))\n\n#answer: int(100 * (k1+k2) / (n1+n2))",
     "count": 100
   },
   {
@@ -151,7 +151,7 @@
   },
   {
     "id": 30,
-    "question_annotated": "{name,David} has {cur,$}{initial_amount,12.48} and wants to buy {quantity,16} {item,bolt}s from a bin at the {store_type,hardware} store. Each {item,bolt} costs {cur,$}{unit_price,0.03}. How much money does {name,David} have left after paying for the {item,bolt}s?\n\n#init:\n- name = sample(names)\n- cur = sample(currencies_sym)\n- item = sample([\"screw\", \"nail\", \"washer\", \"nut\", \"anchor\"])\n- store_type = sample([\"hardware\", \"home improvement\", \"construction supply\"])\n- $quantity = range(15, 60)\n- $initial_amount = arange(12.48, 105, 0.48)\n- $unit_price = arange(0.01, 1, 0.01)\n\n#conditions:\n- initial_amount > quantity * unit_price\n- int(initial_amount - quantity * unit_price) > 0\n- int(quantity * unit_price * 1000) % 10 == 0\n- is_int((initial_amount - quantity * unit_price))\n\n#answer: int(initial_amount - quantity * unit_price)",
+    "question_annotated": "{name,David} has {cur,$}{initial_amount,12.48} and wants to buy {quantity,16} {item,bolt}s from a bin at the {store_type,hardware} store. Each {item,bolt} costs {cur,$}{unit_price,0.03}. How much money does {name,David} have left after paying for the {item,bolt}s?\n\n#init:\n- name = sample(names)\n- cur = sample(currencies_sym)\n- item = sample([\"screw\", \"nail\", \"washer\", \"nut\", \"anchor\"])\n- store_type = sample([\"hardware\", \"home improvement\", \"construction supply\"])\n- $quantity = range(15, 60)\n- $initial_amount = arange(12.48, 105, 0.48)\n- $unit_price = arange(0.01, 1, 0.01)\n\n#conditions:\n- initial_amount > quantity * unit_price\n- round(initial_amount - quantity * unit_price) > 0\n- int(quantity * unit_price * 1000) % 10 == 0\n- is_int((initial_amount - quantity * unit_price))\n\n#answer: round(initial_amount - quantity * unit_price)",
     "count": 100
   },
   {
@@ -161,7 +161,7 @@
   },
   {
     "id": 32,
-    "question_annotated": "{name, Mrs. Cruz} is looking for a {property_type, house} that will not go beyond her ${budget, 400000} budget. She saw a property that has a selling price of ${price, 350000}. On top of that, the buyer has to pay a brokerage fee which is {brokerage_fee, 5}% of the selling price, and also the transfer fee that is {transfer_fee, 12}% of the selling price. How much more is the total price of the {property_type, house} than {name, Mrs. Cruz}'s budget?\n\n#init:\n- name = sample(['Mrs. Smith', 'Ms. Johnson', 'Dr. Patel', 'Mrs. Lee'])\n- property_type = sample(['house', 'apartment', 'condo', 'townhouse'])\n- $budget = range(300000, 500000, 10000)\n- $price = range(250000, 450000, 10000)\n- $brokerage_fee = range(3, 8)\n- $transfer_fee = range(10, 15)\n\n#conditions:\n- brokerage_fee < 100\n- transfer_fee < 100\n- price < budget\n- price * (1 + brokerage_fee/100 + transfer_fee/100) > budget + 1\n- is_int(price * brokerage_fee / 100)\n- is_int(price * transfer_fee / 100)\n\n#answer: int(price * (1 + brokerage_fee/100 + transfer_fee/100) - budget)",
+    "question_annotated": "{name, Mrs. Cruz} is looking for a {property_type, house} that will not go beyond her ${budget, 400000} budget. She saw a property that has a selling price of ${price, 350000}. On top of that, the buyer has to pay a brokerage fee which is {brokerage_fee, 5}% of the selling price, and also the transfer fee that is {transfer_fee, 12}% of the selling price. How much more is the total price of the {property_type, house} than {name, Mrs. Cruz}'s budget?\n\n#init:\n- name = sample(['Mrs. Smith', 'Ms. Johnson', 'Dr. Patel', 'Mrs. Lee'])\n- property_type = sample(['house', 'apartment', 'condo', 'townhouse'])\n- $budget = range(300000, 500000, 10000)\n- $price = range(250000, 450000, 10000)\n- $brokerage_fee = range(3, 8)\n- $transfer_fee = range(10, 15)\n\n#conditions:\n- brokerage_fee < 100\n- transfer_fee < 100\n- price < budget\n- price + price*brokerage_fee/100 + price*transfer_fee/100 > budget + 1\n- is_int(price * brokerage_fee / 100)\n- is_int(price * transfer_fee / 100)\n\n#answer: int(price + price*brokerage_fee/100 + price*transfer_fee/100 - budget)",
     "count": 100
   },
   {
@@ -201,7 +201,7 @@
   },
   {
     "id": 40,
-    "question_annotated": "Sally went to the seashore for vacation. Her parents gave her ${total,15} to buy whatever she wanted. At the souvenir shop, taffy was on sale for \"Buy {n1,1} pound at ${p1,3} per pound, get {n2,1} pound {discount,1/2} off.\" She scooped up {n12,4} pounds. She also bought a mixed bag of seashells for ${p2,1.5} and {n3,4} magnets that were ${p3,0.25} each. How much money does Sally have left?\n\n#init:\n- $total = range(10, 40, 5)\n- $n1 = range(1, 6)\n- $n2 = range(1, 6)\n- $n12 = range(2, 12)\n- $n3 = range(4, 12, 4)\n- $p1 = range(1, 10)\n- $p2 = arange(1, 3.5, 0.5)\n- $p3 = arange(0.25, 1.5, 0.25)\n- $discount = sample(fractions)\n\n#conditions:\n- n2 <= n1\n- n12 - n1 - n2 > 0\n- is_int(n1 * p1 + n2 * (1-discount) * p1 + (n12 - n1 - n2) * p1 + p2 + n3 * p3)\n- n1*p1 + n2*(1-discount)*p1 + (n12-n1-n2)*p1 + p2 + n3*p3 < total\n\n#answer: total-int(n1*p1+n2*(1-discount)*p1+(n12-n1-n2)*p1+p2+n3*p3)",
+    "question_annotated": "{name} went to the seashore for vacation. Her parents gave her ${total,15} to buy whatever she wanted. At the souvenir shop, taffy was on sale for \"Buy {n1,1} pound at ${p1,3} per pound, get {n2,1} pound {discount,1/2} off.\" She scooped up {n12,4} pounds. She also bought a mixed bag of seashells for ${p2,1.5} and {n3,4} magnets that were ${p3,0.25} each. How much money does {name} have left?\n\n#init:\n- $total = range(10, 40, 5)\n- $n1 = range(1, 6)\n- $n2 = range(1, 6)\n- $n12 = range(2, 12)\n- $n3 = range(4, 12, 4)\n- $p1 = range(1, 10)\n- $p2 = arange(1, 3.5, 0.5)\n- $p3 = arange(0.25, 1.5, 0.25)\n- name = sample(names_female)\n- $discount = sample(fractions)\n\n#conditions:\n- n2 <= n1\n- n12 - n1 - n2 > 0\n- is_int(n1 * p1 + n2 * (1-discount) * p1 + (n12 - n1 - n2) * p1 + p2 + n3 * p3)\n- n1*p1 + n2*(1-discount)*p1 + (n12-n1-n2)*p1 + p2 + n3*p3 < total\n\n#answer: total-int(n1*p1+n2*(1-discount)*p1+(n12-n1-n2)*p1+p2+n3*p3)",
     "count": 100
   },
   {
