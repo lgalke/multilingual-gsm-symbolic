@@ -1,4 +1,4 @@
-question = "Henrik sah einen 3 Meter langen Hai mit 2 Markierungen von jeweils 15 cm an der Seite. Wie viel Prozent der Körperlänge des Hais beträgt die Gesamtlänge der Markierungen?"
+question = "Henrik sah einen 3 Meter langen Hai mit 2 Markierungen von jeweils 15 cm. Wie viel Prozent der Körperlänge des Hais beträgt die Gesamtlänge der Markierungen?"
 
 answer = """
 Zuerst berechnest du die Gesamtlänge der Markierungen in cm: 15 cm/Markierung * 2 Markierungen = <<15*2=30>>30 cm.
@@ -13,7 +13,7 @@ id_orig = 473
 id_shuffled = 0
 
 question_annotated = """
-{n,Henrik} sah einen {x,3} Meter langen {big_fish,Hai} mit {k,2} Markierungen von jeweils {y,15} cm an der Seite. Wie viel Prozent der Körperlänge des {big_fish,Hai}s beträgt die Gesamtlänge der Markierungen?
+{n,Henrik} sah einen {x,3} Meter langen {big_fish,Hai} mit {k,2} Markierungen von jeweils {y,15}. Wie viel Prozent der Körperlänge des {big_fish,Hai}s beträgt die Gesamtlänge der Markierungen?
 
 #init:
 - n = sample(names)
