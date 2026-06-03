@@ -543,27 +543,32 @@ class AnnotatedQuestion:
         return [line for line in self.init if "=" in line and (self._init_line_rhs_names(line) & init_vars)]
 
     @cached_property
+    def _derived_line_asts(self) -> list[tuple[list[str], ast.expr]]:
+        return [
+            (self._extract_variables_from_init_line(line), _parse_expr(line.split("=", 1)[1].strip()))
+            for line in self.derived_lines
+        ]
+
+    @cached_property
     def derived_variables(self) -> list[str]:
-        result: list[str] = []
-        for line in self.derived_lines:
-            result.extend(self._extract_variables_from_init_line(line))
-        return result
+        return [var for variables, _ in self._derived_line_asts for var in variables]
 
     @cached_property
     def unconstrained_lines(self) -> list[str]:
+        derived = set(self.derived_lines)
         return [
             line
             for line in self.init
-            if line not in self.derived_lines
-            and not self._is_init_line_constrained(line, self.constrained_variables)
+            if line not in derived and not self._is_init_line_constrained(line, self.constrained_variables)
         ]
 
     @cached_property
     def constrained_lines(self) -> list[str]:
+        derived = set(self.derived_lines)
         return [
             line
             for line in self.init
-            if line not in self.derived_lines and self._is_init_line_constrained(line, self.constrained_variables)
+            if line not in derived and self._is_init_line_constrained(line, self.constrained_variables)
         ]
 
     @cached_property
@@ -917,19 +922,22 @@ class AnnotatedQuestion:
         logger.info(f"Formatted answer: {formatted_answer}")
         return Question(formatted_question, formatted_answer, self.id_orig, self.id_shuffled)
 
-    def _evaluate_unconstrained_init_line(
-        self, init_line: str, replacements: dict[str, Any], rng: Random | None = None
-    ) -> dict[str, Any]:
-        variable_part, definition_part = init_line.split("=", 1)
-        variables = strip_elements(variable_part.strip("$").split(","))
-        ctx = _build_eval_context(rng or Random(), replacements)
-        values = _eval_node(_parse_expr(definition_part.strip()), ctx)
+    def _assign_from_ast(self, variables: list[str], ast_node: ast.expr, env: dict[str, Any]) -> dict[str, Any]:
+        """Evaluate one init-line expression against ``env`` and zip results to variables."""
+        values = _eval_node(ast_node, env)
         if not isinstance(values, (list, tuple)):
             values = [values]
         if len(values) != len(variables):
             logger.warning(f"Incompatible variables {variables} and values {values} in template {self.id_shuffled}.")
             return {}
         return dict(zip(variables, values))
+
+    def _evaluate_unconstrained_init_line(
+        self, init_line: str, replacements: dict[str, Any], rng: Random | None = None
+    ) -> dict[str, Any]:
+        variables = self._extract_variables_from_init_line(init_line)
+        ast_node = _parse_expr(init_line.split("=", 1)[1].strip())
+        return self._assign_from_ast(variables, ast_node, _build_eval_context(rng or Random(), replacements))
 
     def _evaluate_derived_lines(
         self, assignments: dict[str, Any], replacements: dict[str, Any], rng: Random
@@ -943,18 +951,8 @@ class AnnotatedQuestion:
         """
         env = _build_eval_context(rng, replacements) | {k: parse_value(v) for k, v in assignments.items()}
         derived: dict[str, Any] = {}
-        for line in self.derived_lines:
-            variable_part, definition_part = line.split("=", 1)
-            variables = strip_elements(variable_part.strip("$").split(","))
-            values = _eval_node(_parse_expr(definition_part.strip()), env)
-            if not isinstance(values, (list, tuple)):
-                values = [values]
-            if len(values) != len(variables):
-                logger.warning(
-                    f"Incompatible variables {variables} and values {values} in template {self.id_shuffled}."
-                )
-                continue
-            for var, value in zip(variables, values):
+        for variables, ast_node in self._derived_line_asts:
+            for var, value in self._assign_from_ast(variables, ast_node, env).items():
                 derived[var] = value
                 env[var] = parse_value(value)
         return derived
