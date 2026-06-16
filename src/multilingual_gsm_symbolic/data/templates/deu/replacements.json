@@ -183,12 +183,16 @@
         "Fußball",
         "Handball",
         "Basketball",
+        "Volleyball",
         "Tennis",
+        "Tischtennis",
         "Badminton",
         "Schwimmen",
         "Eislaufen",
         "Radfahren",
         "Laufen",
+        "Joggen",
+        "Kickern",
         "Golf"
     ],
     "fruits": [
@@ -225,6 +229,10 @@
             "Erdbeeren"
         ],
         [
+            "Brombeere",
+            "Brombeeren"
+        ],
+        [
             "Blaubeere",
             "Blaubeeren"
         ],
@@ -254,6 +262,7 @@
         "Hamburg",
         "München",
         "Köln",
+        "Düsseldorf",
         "Frankfurt",
         "Stuttgart",
         "Dresden",
@@ -298,9 +307,9 @@
         "g"
     ],
     "currencies_sym": [
-        "DKK",
-        "Kronen",
-        "kr"
+        "EUR",
+        "Euro",
+        "€"
     ],
     "length_lg": [
         "m",
@@ -338,10 +347,10 @@
         "1/16"
     ],
     "fraction_decimals": [
-        "0.2",
-        "0.5",
-        "0.25",
-        "0.75"
+        "0,2",
+        "0,5",
+        "0,25",
+        "0,75"
     ],
     "fraction_alnum": [
         [
