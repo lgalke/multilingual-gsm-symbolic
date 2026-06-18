@@ -1,12 +1,12 @@
 [
   {
     "id": 0,
-    "question_annotated": "رأى {n, أحمد} سمكة {big_fish,قرش} طولها {x,10} أقدام، وعليها {k,2} من سمك الرمورا طول كل منها {y,6} بوصات. كم تبلغ نسبة الطول الإجمالي لسمك الرمورا إلى طول سمكة {big_fish,قرش}، معبَّرًا عنها بالنسبة المئوية؟\n\n#init:\n- n = sample(names)\n- big_fish = sample([\"دلفين\", \"حوت\", \"قرش\"])\n- $x = range(10, 500, 10)\n- $k = range(2, 10)\n- $y = range(2, 100)\n\n#conditions:\n- k * y < x * 12\n- divides(k*y,12)\n- divides(x * 12, k*y)\n- divides(100, x * 12 / (k*y))\n\n#answer: int((k * y)/ (x * 12) * 100)",
+    "question_annotated": "رأى {n, أحمد} سمكة {big_fish,قرش} طولها {x,3} أمتار، وعليها {k,2} من سمك الرمورا طول كل منها {y,15} سنتيمترًا. كم تبلغ نسبة الطول الإجمالي لسمك الرمورا إلى طول سمكة {big_fish,قرش}، معبَّرًا عنها بالنسبة المئوية؟\n\n#init:\n- n = sample(names)\n- big_fish = sample([\"دلفين\", \"حوت\", \"قرش\"])\n- $x = range(2, 21, 1)\n- $k = range(2, 21)\n- $y = range(2, 100)\n\n#conditions:\n- k * y < x * 100\n- divides(100 * x, k*y)\n- divides(100, x * 100 / (k*y))\n\n#answer: int((k * y)/ (x * 100) * 100)",
     "count": 100
   },
   {
     "id": 1,
-    "question_annotated": "يزحف ضباب كثيف من المحيط ليغطّي مدينة. يستغرق تغطية كل {d,3} أميال من المدينة {t,10} دقائق. إذا كان عرض المدينة {y,42} ميلًا من الواجهة البحرية إلى الحافة الداخلية المقابلة، فكم دقيقة سيستغرق الضباب لتغطية المدينة بأكملها؟\n\n#init:\n- $t = range(2, 500)\n- $d = range(2, 100)\n- $y=range(2, 100)\n\n#conditions:\n- is_int(y/d)\n\n#answer: y//d*t",
+    "question_annotated": "يزحف ضباب كثيف من المحيط ليغطّي مدينة. يستغرق تغطية كل {d,3} كيلومترات من المدينة {t,10} دقائق. إذا كان عرض المدينة {y,42} كيلومترًا من الواجهة البحرية إلى الحافة الداخلية المقابلة، فكم دقيقة سيستغرق الضباب لتغطية المدينة بأكملها؟\n\n#init:\n- $t = range(2, 500)\n- $d = range(2, 100)\n- $y=range(2, 100)\n\n#conditions:\n- is_int(y/d)\n\n#answer: y//d*t",
     "count": 100
   },
   {
@@ -31,12 +31,12 @@
   },
   {
     "id": 6,
-    "question_annotated": "يملك {name,يوسف} حقل {fruit,أناناس} مساحته {x,10} {area,هكتار}. يوجد {k,100} ثمرة {fruit,أناناس} في كل {area,هكتار}. يستطيع {name, يوسف} حصاد ثمار {fruit,أناناس}ه كل {n,3} أشهر. كم ثمرة {fruit,أناناس} يستطيع {name,يوسف} حصادها خلال سنة واحدة؟\n\n#init:\n- name = sample(names_male)\n- fruit = sample(fruits)\n- area = sample(['هكتار', 'ياردة مربعة', 'متر مربع'])\n- $x = range(5, 100, 5)\n- $k = range(2, 101)\n- $n = sample([1, 2, 3, 4, 6, 12])\n\n#answer: x * k * (12//n)",
+    "question_annotated": "يملك {name,يوسف} حقل {fruit,أناناس} مساحته {x,10} {area,هكتار}. يوجد {k,100} ثمرة {fruit,أناناس} في كل {area,هكتار}. يستطيع {name, يوسف} حصاد ثمار {fruit,أناناس}ه كل {n,3} أشهر. كم ثمرة {fruit,أناناس} يستطيع {name,يوسف} حصادها خلال سنة واحدة؟\n\n#init:\n- name = sample(names_male)\n- fruit = sample(fruits)\n- area = sample(['هكتار', 'متر مربع'])\n- $x = range(5, 100, 5)\n- $k = range(2, 101)\n- $n = sample([1, 2, 3, 4, 6, 12])\n\n#answer: x * k * (12//n)",
     "count": 100
   },
   {
     "id": 7,
-    "question_annotated": "يشتري مزارع علفًا ل{animals,خيوله}. يشتري تشكيلة من {treat1, التِّبن} و{treat2,الشوفان} و{treat3,الجزر} و{rare_treat, مكعّبات السكر}. وبما أن {rare_treat,مكعّبات السكر} مكافأة نادرة، فإنه يشتري عددًا قدره {n4_txt,اثنان} من العلب وزن كل منها {w4,1} {unit,رطل} للإسطبل بأكمله. ولا يريد من {treat3,الجزر} إلا ما يكفي لإطعام {animals,خيوله} ما دامت الخضروات طازجة، لذا يشتري عددًا قدره {n3_txt,أربعة} من الأكياس وزن كل منها {w3,12} {unit, رطل}. ويُعدّ {treat1,التِّبن} الغذاء الرئيسي ل{animals,خيوله}، لذا يشتري عددًا قدره {n1_txt,اثنان وأربعون} من الرزم وزن كل منها {w1,75} {unit,رطل}. ويُعدّ {treat2, الشوفان} مكمّلًا أساسيًا يُضاف إلى {treat1, التِّبن}، لذا يشتري عددًا قدره {n2_txt,عشرون} من الأكياس وزن كل منها {w2, 65} {unit,رطل}. إذا كانت شاحنة مزرعته تستطيع حمل {total,2250} {unit,رطل} في المرة الواحدة، فكم رحلة يحتاجها المزارع لنقل كل العلف؟\n\n#init:\n- animals = sample(['خيوله', 'أبقاره', 'أغنامه', 'خنازيره', 'حيواناته'])\n- unit = sample(weights_med)\n- treat1, treat2 = sample([\"التِّبن\", \"الذرة\", \"الشوفان\", \"التفاح\", \"القمح\"], 2)\n- treat3 = sample([\"الجزر\", \"الشمندر\", \"الخيار\"])\n- rare_treat = sample([\"مكعّبات السكر\", \"قشر البطيخ\", \"النعناع\"])\n- n4_txt, n4_val = range_str(2, 7, 2, numbers)\n- n3_txt, n3_val = range_str(4, 11, 2, numbers)\n- n2_txt, n2_val = range_str(15, 21, 1, numbers)\n- n1_txt, n1_val = range_str(30, 43, 2, numbers)\n- $w4 = range(1, 4)\n- $w3 = range(8, 13, 2)\n- $w2 = range(45, 70, 5)\n- $w1 = range(55, 80, 5)\n- $total = range(1500, 2300, 150)\n\n#conditions:\n- w4*n4_val < w3*n3_val < w2*n2_val < w1 * n1_val\n- divides(n1_val*w1 + n2_val*w2 + n3_val*w3 + n4_val*w4, total)\n\n#answer: (n1_val*w1 + n2_val*w2 + n3_val*w3 + n4_val*w4)//total",
+    "question_annotated": "يشتري مزارع علفًا ل{animals,خيوله}. يشتري تشكيلة من {treat1, التِّبن} و{treat2,الشوفان} و{treat3,الجزر} و{rare_treat, مكعّبات السكر}. وبما أن {rare_treat,مكعّبات السكر} مكافأة نادرة، فإنه يشتري عددًا قدره {n4_txt,اثنان} من العلب وزن كل منها {w4,1} {unit,كيلوغرام} للإسطبل بأكمله. ولا يريد من {treat3,الجزر} إلا ما يكفي لإطعام {animals,خيوله} ما دامت الخضروات طازجة، لذا يشتري عددًا قدره {n3_txt,أربعة} من الأكياس وزن كل منها {w3,12} {unit, كيلوغرام}. ويُعدّ {treat1,التِّبن} الغذاء الرئيسي ل{animals,خيوله}، لذا يشتري عددًا قدره {n1_txt,اثنان وأربعون} من الرزم وزن كل منها {w1,75} {unit,كيلوغرام}. ويُعدّ {treat2, الشوفان} مكمّلًا أساسيًا يُضاف إلى {treat1, التِّبن}، لذا يشتري عددًا قدره {n2_txt,عشرون} من الأكياس وزن كل منها {w2, 65} {unit,كيلوغرام}. إذا كانت شاحنة مزرعته تستطيع حمل {total,2250} {unit,كيلوغرام} في المرة الواحدة، فكم رحلة يحتاجها المزارع لنقل كل العلف؟\n\n#init:\n- animals = sample(['خيوله', 'أبقاره', 'أغنامه', 'خنازيره', 'حيواناته'])\n- unit = sample([\"كيلوغرام\", \"كغ\"])\n- treat1, treat2 = sample([\"التِّبن\", \"الذرة\", \"الشوفان\", \"التفاح\", \"القمح\"], 2)\n- treat3 = sample([\"الجزر\", \"الشمندر\", \"الخيار\"])\n- rare_treat = sample([\"مكعّبات السكر\", \"قشر البطيخ\", \"النعناع\"])\n- n4_txt, n4_val = range_str(2, 7, 2, numbers)\n- n3_txt, n3_val = range_str(4, 11, 2, numbers)\n- n2_txt, n2_val = range_str(15, 21, 1, numbers)\n- n1_txt, n1_val = range_str(30, 43, 2, numbers)\n- $w4 = range(1, 4)\n- $w3 = range(8, 13, 2)\n- $w2 = range(45, 70, 5)\n- $w1 = range(55, 80, 5)\n- $total = range(1500, 2300, 150)\n\n#conditions:\n- w4*n4_val < w3*n3_val < w2*n2_val < w1 * n1_val\n- divides(n1_val*w1 + n2_val*w2 + n3_val*w3 + n4_val*w4, total)\n\n#answer: (n1_val*w1 + n2_val*w2 + n3_val*w3 + n4_val*w4)//total",
     "count": 100
   },
   {
@@ -56,7 +56,7 @@
   },
   {
     "id": 11,
-    "question_annotated": "يريد {name, كريم} أن يصنع مكعّبات ثلج بأحجام مختلفة باستخدام {n,32} {unit,أوقية} من الماء. يستطيع صنع مكعّبات عملاقة تستهلك {w1,4} {unit,أوقية} لكل مكعّب، ومكعّبات متوسطة تستهلك {w2,2} {unit,أوقية}، ومكعّبات صغيرة تستهلك {w3,1/2} {unit,أوقية}. إذا صنع {n1,3} مكعّبات عملاقة و{n2,7} مكعّبات متوسطة و{n3,8} مكعّبات صغيرة، فكم {unit,أوقية} من الماء تبقّت لديه؟\n\n#init:\n- name = sample(names_male)\n- unit = sample(weights_sm)\n- $w1 = range(4, 10)\n- $w2 = range(2, 10)\n- $w3 = sample(fractions)\n- $n1 = range(3, 10)\n- $n2 = range(7, 13)\n- $n3 = sample([8, 14, 24, 15])\n- $n = range(32, 240, 4)\n\n#conditions:\n- w3 < w2 < w1\n- is_int(n3 * w3)\n- n - (n1*w1) - (n2*w2) - int(n3*w3) > 0\n\n#answer: (n - (n1*w1) - (n2*w2) - int(n3*w3))",
+    "question_annotated": "يريد {name, كريم} أن يصنع مكعّبات ثلج بأحجام مختلفة باستخدام {n,32} {unit,غرام} من الماء. يستطيع صنع مكعّبات عملاقة تستهلك {w1,4} {unit,غرام} لكل مكعّب، ومكعّبات متوسطة تستهلك {w2,2} {unit,غرام}، ومكعّبات صغيرة تستهلك {w3,1/2} {unit,غرام}. إذا صنع {n1,3} مكعّبات عملاقة و{n2,7} مكعّبات متوسطة و{n3,8} مكعّبات صغيرة، فكم {unit,غرام} من الماء تبقّت لديه؟\n\n#init:\n- name = sample(names_male)\n- unit = sample([\"غرام\", \"غ\"])\n- $w1 = range(4, 10)\n- $w2 = range(2, 10)\n- $w3 = sample(fractions)\n- $n1 = range(3, 10)\n- $n2 = range(7, 13)\n- $n3 = sample([8, 14, 24, 15])\n- $n = range(32, 240, 4)\n\n#conditions:\n- w3 < w2 < w1\n- is_int(n3 * w3)\n- n - (n1*w1) - (n2*w2) - int(n3*w3) > 0\n\n#answer: (n - (n1*w1) - (n2*w2) - int(n3*w3))",
     "count": 100
   },
   {
@@ -86,7 +86,7 @@
   },
   {
     "id": 17,
-    "question_annotated": "تمشي {name,سارة} {n,3} {unit,ميل} كل يوم على مسارها المفضّل للمشي، والذي يتضمّن {m,2} {unit,ميل} مشيًا على الشاطئ و{k,1} {unit,ميل} مشيًا على الرصيف. على الرصيف، تمشي {name,سارة} بسرعة تبلغ {mult_txt,مرتين} سرعتها على الشاطئ. إذا قضت {t,40} دقيقة من مشيها على الشاطئ، فكم تستغرق من الوقت لإكمال مسار المشي بأكمله البالغ {n,3} {unit, ميل}، بالدقائق؟\n\n#init:\n- name = sample(names_female)\n- unit = sample(length_lg)\n- mult_txt, mult_val = sample(multi_times)\n- $n = range(3, 60)\n- $m = range(2, 20)\n- $k = range(1, 20)\n- $t = range(40, 70)\n#conditions:\n- m + k == n\n- m < t\n- mult_val *m < t\n- divides(t, m)\n- is_int(k / (mult_val*m/t))\n#answer: t+(k/(mult_val*m/t))",
+    "question_annotated": "تمشي {name,سارة} {n,3} {unit,كيلومتر} كل يوم على مسارها المفضّل للمشي، والذي يتضمّن {m,2} {unit,كيلومتر} مشيًا على الشاطئ و{k,1} {unit,كيلومتر} مشيًا على الرصيف. على الرصيف، تمشي {name,سارة} بسرعة تبلغ {mult_txt,مرتين} سرعتها على الشاطئ. إذا قضت {t,40} دقيقة من مشيها على الشاطئ، فكم تستغرق من الوقت لإكمال مسار المشي بأكمله البالغ {n,3} {unit, كيلومتر}، بالدقائق؟\n\n#init:\n- name = sample(names_female)\n- unit = sample([\"كيلومتر\", \"كم\"])\n- mult_txt, mult_val = sample(multi_times)\n- $n = range(3, 40)\n- $m = range(2, 20)\n- $k = range(1, 20)\n- $t = range(40, 70)\n#conditions:\n- m + k == n\n- m < t\n- mult_val *m < t\n- divides(t, m)\n- is_int(k / (mult_val*m/t))\n#answer: t+(k/(mult_val*m/t))",
     "count": 100
   },
   {
@@ -96,7 +96,7 @@
   },
   {
     "id": 19,
-    "question_annotated": "في اختبار مكوّن من {n,60} سؤالًا، {p1,40}% من الأسئلة {s1,سهلة}، والباقي مقسّم بالتساوي إلى أسئلة {s2,متوسطة} و{s3,صعبة}. إذا كانت {name,سارة} متأكّدة من حلّ {r1,75}% من الأسئلة {s1,سهلة}، و{frac_txt,نصف} الأسئلة {s2,متوسطة} و{s3,صعبة} بشكل صحيح، فكم نقطة هي متأكّدة من الحصول عليها؟\n\n#init:\n- s1, s2, s3 = sample([\"تاريخ\", \"جغرافيا\", \"أحياء\", \"كيمياء\", \"فيزياء\", \"اقتصاد\", \"أدب\", \"جبر\", \"هندسة\" ], 3)\n- name = sample(names_female)\n- frac_txt, frac_val = sample(fraction_alnum)\n- $p1 = range(5, 71, 5)\n- $r1 = range(5, 101, 5)\n- $n = range(10, 151, 10)\n\n#conditions:\n- is_int(n * (p1/100))\n- is_int(n * (p1/100) * (r1/100))\n- is_int(n*(1-(p1/100))*frac_val)\n\n#answer: ensure_int(n * (p1/100) * (r1/100)) + ensure_int(n*(1-(p1/100))*frac_val)",
+    "question_annotated": "في اختبار مكوّن من {n,60} سؤالًا، {p1,40}% من الأسئلة {s1,سهلة}، والباقي مقسّم بالتساوي إلى أسئلة {s2,متوسطة} و{s3,صعبة}. إذا كانت {name,سارة} متأكّدة من حلّ {r1,75}% من الأسئلة {s1,سهلة}، و{frac_txt,نصف} الأسئلة {s2,متوسطة} و{s3,صعبة} بشكل صحيح، فكم نقطة هي متأكّدة من الحصول عليها؟\n\n#init:\n- s1, s2, s3 = sample([\"تاريخ\", \"جغرافيا\", \"أحياء\", \"كيمياء\", \"فيزياء\", \"اقتصاد\", \"أدب\", \"جبر\", \"هندسة\" ], 3)\n- name = sample(names_female)\n- frac_txt, frac_val = sample(fraction_alnum)\n- $p1 = range(5, 71, 5)\n- $r1 = range(5, 101, 5)\n- $n = range(10, 151, 10)\n\n#conditions:\n- is_int(n * (p1/100))\n- is_int(n * (p1/100) * (r1/100))\n- is_int(n*(1-(p1/100))*frac_val)\n\n#answer: int(n * (p1/100) * (r1/100)) + int(n*(1-(p1/100))*frac_val)",
     "count": 100
   },
   {
@@ -121,7 +121,7 @@
   },
   {
     "id": 24,
-    "question_annotated": "وفقًا لمعلوماتها الغذائية، يحتوي كيس {food,رقائق البطاطس} على {cal,250} سعرة حرارية لكل حصّة. إذا كان كيس وزنه {size,300} {unit,غرام} يحتوي على {n,5} حصص، فكم {unit,غرام} يمكنك أن تأكل إذا كان هدفك اليومي من السعرات الحرارية {total,2000} وقد استهلكت بالفعل {spent,1800} سعرة حرارية؟\n\n#init:\n- food = sample([\"الفشار\", \"الخبز\",  \"البسكويت\"])\n- unit = sample([\"غرام\", \"أوقية\", \"أونصة\"])\n- $cal = range(150, 500, 25)\n- $size = range(100, 400, 25)\n- $n = range(4, 8)\n- $total = range(1900, 2500, 5)\n- $spent = range(600, 1900, 25)\n\n#conditions:\n- spent < total\n- is_int( 5 * (total - spent) / cal)\n- divides(size, n)\n- divides(size//n, (total-spent)/cal)\n\n#answer: size//n * Fraction((total-spent)/cal)",
+    "question_annotated": "وفقًا لمعلوماتها الغذائية، يحتوي كيس {food,رقائق البطاطس} على {cal,250} سعرة حرارية لكل حصّة. إذا كان كيس وزنه {size,300} {unit,غرام} يحتوي على {n,5} حصص، فكم {unit,غرام} يمكنك أن تأكل إذا كان هدفك اليومي من السعرات الحرارية {total,2000} وقد استهلكت بالفعل {spent,1800} سعرة حرارية؟\n\n#init:\n- food = sample([\"الفشار\", \"الخبز\",  \"البسكويت\"])\n- unit = sample([\"غرام\", \"غ\"])\n- $cal = range(150, 500, 25)\n- $size = range(100, 400, 25)\n- $n = range(4, 8)\n- $total = range(1900, 2500, 5)\n- $spent = range(600, 1900, 25)\n\n#conditions:\n- spent < total\n- is_int( 5 * (total - spent) / cal)\n- divides(size, n)\n- divides(size//n, (total-spent)/cal)\n\n#answer: size//n * Fraction((total-spent)/cal)",
     "count": 100
   },
   {
@@ -201,7 +201,7 @@
   },
   {
     "id": 40,
-    "question_annotated": "ذهبت {name,سارة} إلى شاطئ البحر في عطلة. وأعطاها والداها {total,15} ريالًا لتشتري ما تشاء. في متجر الهدايا التذكارية، كانت حلوى التافي معروضة للبيع بعرض \"اشترِ {n1,1} رطل بسعر {p1,3} ريال للرطل، واحصل على {n2,1} رطل بخصم {discount,1/2}.\" فأخذت {n12,4} أرطال. واشترت أيضًا كيسًا مختلطًا من الأصداف البحرية بسعر {p2,1.5} ريال و{n3,4} مغناطيسات بسعر {p3,0.25} ريال لكل منها. كم تبقّى مع {name,سارة} من نقود؟\n\n#init:\n- name = sample(names_female)\n- $total = range(10, 40, 5)\n- $n1 = range(1, 6)\n- $n2 = range(1, 6)\n- $n12 = range(2, 12)\n- $n3 = range(4, 12, 4)\n- $p1 = range(1, 10)\n- $p2 = arange(1, 3.5, 0.5)\n- $p3 = arange(0.25, 1.5, 0.25)\n- $discount = sample(fractions)\n\n#conditions:\n- n2 <= n1\n- n12 - n1 - n2 > 0\n- is_int(n1 * p1 + n2 * (1-discount) * p1 + (n12 - n1 - n2) * p1 + p2 + n3 * p3)\n- n1*p1 + n2*(1-discount)*p1 + (n12-n1-n2)*p1 + p2 + n3*p3 < total\n\n#answer: total-int(n1*p1+n2*(1-discount)*p1+(n12-n1-n2)*p1+p2+n3*p3)",
+    "question_annotated": "ذهبت {name,سارة} إلى شاطئ البحر في عطلة. وأعطاها والداها {total,15} ريالًا لتشتري ما تشاء. في متجر الهدايا التذكارية، كانت حلوى التافي معروضة للبيع بعرض \"اشترِ {n1,500} غرام بسعر {p1,3} ريال، واحصل على {n2,500} غرام بخصم {discount,1/2}.\" فأخذت {n12,2000} غرام. واشترت أيضًا كيسًا مختلطًا من الأصداف البحرية بسعر {p2,1.5} ريال و{n3,4} مغناطيسات بسعر {p3,0.25} ريال لكل منها. كم تبقّى مع {name,سارة} من نقود؟\n\n#init:\n- name = sample(names_female)\n- $total = range(10, 40, 5)\n- $n1 = range(500, 3000, 500)\n- $n2 = range(500, 3000, 500)\n- $n12 = range(1000, 6000, 500)\n- $n3 = range(4, 12, 4)\n- $p1 = range(1, 10)\n- $p2 = arange(1, 3.5, 0.5)\n- $p3 = arange(0.25, 1.5, 0.25)\n- $discount = sample(fractions)\n\n#conditions:\n- n2 <= n1\n- n12 - n1 - n2 > 0\n- is_int(p1 + (n2/n1)*discount*p1 + (n12 - n1 - n2)/n1*p1 + p2 + n3*p3)\n- p1 + (n2/n1)*discount*p1 + (n12 - n1 - n2)/n1*p1 + p2 + n3*p3 < total\n\n#answer: total-int(p1 + (n2/n1)*discount*p1 + (n12 - n1 - n2)/n1*p1+p2+n3*p3)",
     "count": 100
   },
   {
@@ -226,7 +226,7 @@
   },
   {
     "id": 45,
-    "question_annotated": "لدى {name,سارة} حوض زهور طوله {length,111} {unit_length,قدم}. تريد {name,سارة} أن تملأ حوض الزهور بالنباتات. تنمو زهور {name,سارة} بعرض {plant_width,12} بوصة، وتنصّ إرشادات البستنة بزراعة زهرة واحدة كل {space,1.5} {unit_length,قدم} على امتداد الحوض. تملك {name,سارة} بالفعل {owned,17} زهرة. وتكلّف كل نبتة مزهرة {cost,6} {cur,ريال} في المتجر. فكم من المال ستنفق {name,سارة} في المتجر لملء حوض الزهور؟\n\n#init:\n- name = sample(names_female)\n- unit_length = sample(['قدم', 'متر'])\n- cur = sample(currencies_sym)\n- $length = range(110, 220)\n- $plant_width = range(2, 13)\n- $space = arange(1, 20, 0.25)\n- $owned = range(10, 30)\n- $cost = range(3, 15)\n\n#conditions:\n- plant_width * 3 < length\n- plant_width < space\n- is_int(length / space)\n- length / space > owned\n\n#answer: int((length / space - owned) * cost)",
+    "question_annotated": "لدى {name,سارة} حوض زهور طوله {length,111} {unit_length,متر}. تريد {name,سارة} أن تملأ حوض الزهور بالنباتات. تنمو زهور {name,سارة} بعرض {plant_width,12} سنتيمتر، وتنصّ إرشادات البستنة بزراعة زهرة واحدة كل {space,1.5} {unit_length,متر} على امتداد الحوض. تملك {name,سارة} بالفعل {owned,17} زهرة. وتكلّف كل نبتة مزهرة {cost,6} {cur,ريال} في المتجر. فكم من المال ستنفق {name,سارة} في المتجر لملء حوض الزهور؟\n\n#init:\n- name = sample(names_female)\n- unit_length = sample(['متر'])\n- cur = sample(currencies_sym)\n- $length = range(110, 220)\n- $plant_width = range(2, 13)\n- $space = arange(1, 20, 0.25)\n- $owned = range(10, 30)\n- $cost = range(3, 15)\n\n#conditions:\n- plant_width * 3 < length\n- plant_width < space\n- is_int(length / space)\n- length / space > owned\n\n#answer: int((length / space - owned) * cost)",
     "count": 100
   },
   {
@@ -251,7 +251,7 @@
   },
   {
     "id": 50,
-    "question_annotated": "مساحة {room_type,غرفة نوم} {name,خالد} المستطيلة هي {area,360} قدم مربع. فإذا كان طول الغرفة {length,3} ياردة، فما محيط الغرفة بالأقدام؟\n\n#init:\n- name = sample(names_male)\n- room_type = sample([\"غرفة المعيشة\", \"المكتب\", \"المكتب الخاص\", \"المطبخ\"])\n- $area = range(200, 1200)\n- $length = range(3, 44)\n\n#conditions:\n- is_int(area / (length * 3))\n- area / (length * 3) > length * 3\n\n#answer: 2 * (area // (length * 3) + length * 3)",
+    "question_annotated": "مساحة {room_type,غرفة نوم} {name,خالد} المستطيلة هي {area,33} متر مربع. فإذا كان طول الغرفة {length,300} سم، فما محيط الغرفة بالأمتار؟\n\n#init:\n- name = sample(names_male)\n- room_type = sample([\"غرفة المعيشة\", \"المكتب\", \"المكتب الخاص\", \"المطبخ\"])\n- $area = range(18, 121)\n- $length = range(300, 1300, 100)\n\n#conditions:\n- is_int(area / (length * (1/100)))\n- (area / (length * (1/100))) > (length * (1/100))\n\n#answer: 2 * (area // (length * (1/100)) + length * (1/100))",
     "count": 100
   },
   {
@@ -281,7 +281,7 @@
   },
   {
     "id": 56,
-    "question_annotated": "يحتوي {container,كوب} من {liquid,الحليب} على {vol,8} {unit,أوقية} من {liquid,الحليب}. يشرب {name,محمد} {num,2} {container_plural,أكواب} من {liquid,الحليب}. إذا كان {liquid,الحليب} يحتوي على {cal,3} سعرات حرارية لكل {unit,أوقية}، فكم سعرة حرارية تناول؟\n\n#init:\n- name = sample(names_male)\n- container, container_plural = sample([(\"كوب\",\"أكواب\"), (\"فنجان\",\"فناجين\"), (\"زجاجة\",\"زجاجات\"), (\"علبة\",\"علب\")])\n- liquid = sample([\"العصير\", \"الصودا\", \"المياه الغازية\", \"الشاي\", \"عصير الليمون\"])\n- unit = sample([\"أوقية\", \"مل\", \"سم مكعب\", \"أونصة\"])\n- $vol = range(6, 16)\n- $num = range(2, 6)\n- $cal = range(2, 10)\n\n\n#answer: vol * num * cal",
+    "question_annotated": "يحتوي {container,كوب} من {liquid,الحليب} على {vol,250} ملليلتر من {liquid,الحليب}. يشرب {name,محمد} {num,2} {container_plural,أكواب} من {liquid,الحليب}. إذا كان {liquid,الحليب} يحتوي على {cal,3} سعرات حرارية لكل ملليلتر، فكم سعرة حرارية تناول؟\n\n#init:\n- name = sample(names_male)\n- container, container_plural = sample([(\"كوب\",\"أكواب\"), (\"فنجان\",\"فناجين\"), (\"زجاجة\",\"زجاجات\"), (\"علبة\",\"علب\")])\n- liquid = sample([\"العصير\", \"الصودا\", \"المياه الغازية\", \"الشاي\", \"عصير الليمون\"])\n- $vol = range(150, 501, 50)\n- $num = range(2, 6)\n- $cal = range(2, 10)\n\n\n#answer: vol * num * cal",
     "count": 100
   },
   {
@@ -291,7 +291,7 @@
   },
   {
     "id": 58,
-    "question_annotated": "يستطيع {worker,قزم} واحد أن يستخرج {base,12} {unit,رطل} من الخام يوميًا باستخدام {tool1,يديه العاريتين}. ويستطيع أن يستخرج ما يعادل {mult1_txt,مرتين} هذا القدر باستخدام {tool2,معول برونزي}، وأكثر بنسبة {mult2,50}% باستخدام {tool3,معول فولاذي} مقارنةً ب{tool2,معول برونزي}. فكم {unit,رطل} من الخام يستطيع {n,40} {worker,قزم} يحملون {tool3,معول فولاذي} استخراجه في شهر مدته {days,30} يومًا؟\n\n#init:\n- worker = sample([\"عامل منجم\", \"عفريت\", \"قزم\", \"غول\"])\n- tool1 = sample([\"يديه العاريتين\", \"مجرفة بسيطة\", \"معول خشبي\"])\n- unit = sample([\"رطل\", \"كغ\"])\n- tool2 = sample([\"معول نيكل\", \"معول برونزي\", \"معول فضي\"])\n- tool3 = sample([\"معول فولاذي\", \"معول ماسي\", \"معول ميثريل\", \"معول تيتانيوم\"])\n- $base = range(5, 20)\n- mult1_txt, mult1_val = sample(multi_times)\n- $mult2 = range(30, 80, 5)\n- $n = range(20, 50)\n- $days = range(28, 32)\n\n#conditions:\n- is_int(mult2/100*base*mult1_val)\n- int(base * mult1_val * (1 + mult2/100) * n * days) < 15000\n\n#answer: int(base * mult1_val * (1 + mult2/100) * n * days)",
+    "question_annotated": "يستطيع {worker,قزم} واحد أن يستخرج {base,12} {unit,كيلوغرام} من الخام يوميًا باستخدام {tool1,يديه العاريتين}. ويستطيع أن يستخرج ما يعادل {mult1_txt,مرتين} هذا القدر باستخدام {tool2,معول برونزي}، وأكثر بنسبة {mult2,50}% باستخدام {tool3,معول فولاذي} مقارنةً ب{tool2,معول برونزي}. فكم {unit,كيلوغرام} من الخام يستطيع {n,40} {worker,قزم} يحملون {tool3,معول فولاذي} استخراجه في شهر مدته {days,30} يومًا؟\n\n#init:\n- worker = sample([\"عامل منجم\", \"عفريت\", \"قزم\", \"غول\"])\n- tool1 = sample([\"يديه العاريتين\", \"مجرفة بسيطة\", \"معول خشبي\"])\n- unit = sample([\"كيلوغرام\", \"كغ\"])\n- tool2 = sample([\"معول نيكل\", \"معول برونزي\", \"معول فضي\"])\n- tool3 = sample([\"معول برونزي\", \"معول فولاذي\", \"معول ماسي\", \"معول ميثريل\", \"معول تيتانيوم\"])\n- $base = range(5, 20)\n- mult1_txt, mult1_val = sample(multi_times)\n- $mult2 = range(30, 80, 5)\n- $n = range(20, 50)\n- $days = range(28, 32)\n\n#conditions:\n- is_int(mult2/100*base*mult1_val)\n- int(base * mult1_val * (1 + mult2/100) * n * days) < 15000\n\n#answer: int(base * mult1_val * (1 + mult2/100) * n * days)",
     "count": 100
   },
   {
@@ -336,7 +336,7 @@
   },
   {
     "id": 67,
-    "question_annotated": "تعطّلت {vehicle,السيارة} التي يملكها {name,يوسف}. يبلغ وزن {vehicle,السيارة} {weight_vehicle,1200} {unit,رطل}، وبداخلها {item,أمتعة} تزن {weight_item,250} {unit,رطل}. كما أن بداخلها {num_passengers_txt,اثنان} من {passenger_type,أطفاله} الصغار يزن كل منهم {weight_passenger,75} {unit,رطل}. إذا كانت القوة اللازمة لتحريك {vehicle,السيارة} تساوي {force_percent,1}% من الوزن، فما مقدار القوة التي يحتاجها لدفع {vehicle,السيارة}؟\n\n#init:\n- name = sample(names_male)\n- vehicle = sample(['سيارة', 'شاحنة صغيرة', 'شاحنة', 'سيارة دفع رباعي'])\n- item = sample(['أمتعة', 'بقالة', 'معدات', 'أثاث'])\n- passenger_type = sample(['أطفاله', 'أصدقائه', 'زملائه', 'زملائه في الفريق'])\n- unit = sample(['رطل', 'كيلوغرام'])\n- $weight_vehicle = range(1000, 3000, 50)\n- $weight_item = range(100, 500, 25)\n- $weight_passenger = range(50, 100, 5)\n- num_passengers_txt, num_passengers_val = range_str(2, 5, 1, numbers)\n- $force_percent = range(1, 6)\n\n#conditions:\n- is_int((weight_vehicle + weight_item + num_passengers_val * weight_passenger) * force_percent / 100)\n\n#answer: int((weight_vehicle + weight_item + num_passengers_val * weight_passenger) * force_percent / 100)",
+    "question_annotated": "تعطّلت {vehicle,السيارة} التي يملكها {name,يوسف}. يبلغ وزن {vehicle,السيارة} {weight_vehicle,1200} {unit,كيلوغرام}، وبداخلها {item,أمتعة} تزن {weight_item,250} {unit,كيلوغرام}. كما أن بداخلها {num_passengers_txt,اثنان} من {passenger_type,أطفاله} الصغار يزن كل منهم {weight_passenger,75} {unit,كيلوغرام}. إذا كانت القوة اللازمة لتحريك {vehicle,السيارة} تساوي {force_percent,1}% من الوزن، فما مقدار القوة التي يحتاجها لدفع {vehicle,السيارة}؟\n\n#init:\n- name = sample(names_male)\n- vehicle = sample(['سيارة', 'شاحنة صغيرة', 'شاحنة', 'سيارة دفع رباعي'])\n- item = sample(['أمتعة', 'بقالة', 'معدات', 'أثاث'])\n- passenger_type = sample(['أطفاله', 'أصدقائه', 'زملائه', 'زملائه في الفريق'])\n- unit = sample(['كيلوغرام', 'كغ'])\n- $weight_vehicle = range(1000, 3000, 50)\n- $weight_item = range(100, 500, 25)\n- $weight_passenger = range(50, 100, 5)\n- num_passengers_txt, num_passengers_val = range_str(2, 5, 1, numbers)\n- $force_percent = range(1, 6)\n\n#conditions:\n- is_int((weight_vehicle + weight_item + num_passengers_val * weight_passenger) * force_percent / 100)\n\n#answer: int((weight_vehicle + weight_item + num_passengers_val * weight_passenger) * force_percent / 100)",
     "count": 100
   },
   {
@@ -356,7 +356,7 @@
   },
   {
     "id": 71,
-    "question_annotated": "يُطعم {name,خالد} ماشيته {food,القش}. يحتاج كل {animal1,ماعز} إلى {n1,5} {unit,رطلًا}، ويحتاج كل {animal2,لاما} إلى ما يقل بمقدار {n2,3} {unit,رطلًا} عن ضعف ما يحتاجه كل {animal1,ماعز}. إذا كان هناك {k1,15} {animal1,ماعز} و{k2,12} {animal2,لاما}، فكم {unit,رطلًا} من {food,القش} يحتاج {name,خالد}؟\n\n#init:\n- name = sample(names_male)\n- food = sample([\"القش\", \"الحبوب\", \"العلف\", \"السيلاج\"])\n- animal1, animal2 = sample([\"ماعز\", \"بقرة\", \"حصان\", \"حمار\", \"لاما\", \"ألبكة\", \"خنزير\", \"ديك رومي\", \"بطة\"], 2)\n- unit = sample([\"أرطال\", \"كيلوغرامات\", \"كغ\"])\n- $n1 = range(3, 15)\n- $n2 = range(1, 10)\n- $k1 = range(10, 50)\n- $k2 = range(10, 50)\n\n#conditions:\n- 2*n1 - n2 > 0\n\n#answer: k1*n1 + k2*(2*n1 - n2)",
+    "question_annotated": "يُطعم {name,خالد} ماشيته {food,القش}. يحتاج كل {animal1,ماعز} إلى {n1,5} {unit,كيلوغرامًا}، ويحتاج كل {animal2,لاما} إلى ما يقل بمقدار {n2,3} {unit,كيلوغرامًا} عن ضعف ما يحتاجه كل {animal1,ماعز}. إذا كان هناك {k1,15} {animal1,ماعز} و{k2,12} {animal2,لاما}، فكم {unit,كيلوغرامًا} من {food,القش} يحتاج {name,خالد}؟\n\n#init:\n- name = sample(names_male)\n- food = sample([\"القش\", \"الحبوب\", \"العلف\", \"السيلاج\"])\n- animal1, animal2 = sample([\"ماعز\", \"بقرة\", \"حصان\", \"حمار\", \"لاما\", \"ألبكة\", \"خنزير\", \"ديك رومي\", \"بطة\"], 2)\n- unit = sample([\"كيلوغرامات\", \"كغ\"])\n- $n1 = range(3, 15)\n- $n2 = range(1, 10)\n- $k1 = range(10, 50)\n- $k2 = range(10, 50)\n\n#conditions:\n- 2*n1 - n2 > 0\n\n#answer: k1*n1 + k2*(2*n1 - n2)",
     "count": 100
   },
   {
@@ -381,7 +381,7 @@
   },
   {
     "id": 76,
-    "question_annotated": "اصطاد {name,أحمد} {n,3} من سمك {fish,التونة} يوم {day,الاثنين} الماضي، وزن سمكة {fish,التونة} الأولى التي اصطادها {w1,56} {unit,كيلوغرام}، ووزن سمكة {fish,التونة} الثانية {w2,46} {unit,كيلوغرام}، ووزن باقي سمك {fish,التونة} {w3,26} {unit,كيلوغرام}. إذا كان سعر {unit,كيلوغرام} من {fish,التونة} {cur,ريال}{price,0.5}، فكم سيربح بعد بيع جميع سمك {fish,التونة} في السوق؟\n\n#init:\n- name = sample(names_male)\n- fish = sample([\"التونة\",\"السلمون\", \"القد\", \"السلمون المرقط\", \"سلمون الستيلهيد\"])\n- day = sample(weekdays)\n- unit = sample([\"كيلوغرام\", \"رطل\", \"كغ\"])\n- cur = sample(currencies_sym)\n- $n = range(3, 8)\n- $w1 = range(40, 80)\n- $w2 = range(30, 60)\n- $w3 = range(20, 40)\n- $price = arange(0.25, 2.5, 0.25)\n\n#conditions:\n- n > 2\n- is_int((w1 + w2) * price + (n-2) * w3 * price)\n\n#answer: int((w1 + w2) * price + (n-2)*w3*price)",
+    "question_annotated": "اصطاد {name,أحمد} {n,3} من سمك {fish,التونة} يوم {day,الاثنين} الماضي، وزن سمكة {fish,التونة} الأولى التي اصطادها {w1,56} {unit,كيلوغرام}، ووزن سمكة {fish,التونة} الثانية {w2,46} {unit,كيلوغرام}، ووزن باقي سمك {fish,التونة} {w3,26} {unit,كيلوغرام}. إذا كان سعر {unit,كيلوغرام} من {fish,التونة} {cur,ريال}{price,0.5}، فكم سيربح بعد بيع جميع سمك {fish,التونة} في السوق؟\n\n#init:\n- name = sample(names_male)\n- fish = sample([\"التونة\",\"السلمون\", \"القد\", \"السلمون المرقط\", \"سلمون الستيلهيد\"])\n- day = sample(weekdays)\n- unit = sample([\"كيلوغرام\", \"كغ\"])\n- cur = sample(currencies_sym)\n- $n = range(3, 8)\n- $w1 = range(40, 80)\n- $w2 = range(30, 60)\n- $w3 = range(20, 40)\n- $price = arange(0.25, 2.5, 0.25)\n\n#conditions:\n- n > 2\n- is_int((w1 + w2) * price + (n-2) * w3 * price)\n\n#answer: int((w1 + w2) * price + (n-2)*w3*price)",
     "count": 100
   },
   {
@@ -401,7 +401,7 @@
   },
   {
     "id": 80,
-    "question_annotated": "تبيع آلات البيع {item1,رقائق البطاطس} بسعر {price1,40} سنتًا و{item2,ألواح الحلوى} بسعر {price2,75} سنتًا. أنفق {name,أحمد} {cur,ريال}{total,5} واشترى {n1,3} أكياس من {item1,رقائق البطاطس} وتبقّى لديه {p,1}% من نقوده كباقٍ. فكم عدد ما اشتراه من {item2,ألواح الحلوى}؟\n\n#init:\n- name = sample(names_male)\n- item1, item2 = sample(['المعجّنات المملّحة', 'الفشار', 'العلكة', 'البسكويت', 'المقرمشات'], 2)\n- cur = sample(currencies_sym)\n- $price1 = range(25, 100, 5)\n- $price2 = range(50, 150, 5)\n- $total = range(5, 21)\n- $n1 = range(1, 10)\n- $p = range(1, 10)\n\n#conditions:\n- price2 > price1\n- is_int(total * p / 100)\n- total * (100 - p) > n1 * price1\n- (total * (100 - p) - n1 * price1) % price2 == 0\n\n#answer: ensure_int((total * (100 - p) - n1 * price1) / price2)",
+    "question_annotated": "تبيع آلات البيع {item1,رقائق البطاطس} بسعر {price1,40} سنتًا و{item2,ألواح الحلوى} بسعر {price2,75} سنتًا. أنفق {name,أحمد} {cur,ريال}{total,5} واشترى {n1,3} أكياس من {item1,رقائق البطاطس} وتبقّى لديه {p,1}% من نقوده كباقٍ. فكم عدد ما اشتراه من {item2,ألواح الحلوى}؟\n\n#init:\n- name = sample(names_male)\n- item1, item2 = sample(['المعجّنات المملّحة', 'الفشار', 'العلكة', 'البسكويت', 'المقرمشات'], 2)\n- cur = sample(currencies_sym)\n- $price1 = range(25, 100, 5)\n- $price2 = range(50, 150, 5)\n- $total = range(5, 21)\n- $n1 = range(1, 10)\n- $p = range(1, 10)\n\n#conditions:\n- price2 > price1\n- is_int(total * p / 100)\n- total * (100 - p) > n1 * price1\n- (total * (100 - p) - n1 * price1) % price2 == 0\n\n#answer: int((total * (100 - p) - n1 * price1) / price2)",
     "count": 100
   },
   {
@@ -421,12 +421,12 @@
   },
   {
     "id": 84,
-    "question_annotated": "تشتري {name,مريم} {n,8} أسهم بسعر {cur,ريال}{p,8} للسهم الواحد. يرتفع سعر السهم بنسبة {r1,50}% في السنة الأولى التي تحتفظ فيها {name,مريم} بالأسهم، ثم ينخفض بنسبة {r2,25}% في السنة الثانية. فما القيمة النهائية لجميع أسهم {name,مريم}؟\n\n#init:\n- name = sample(names_female)\n- cur = sample(currencies_sym)\n- $n = range(5, 20)\n- $p = range(5, 100)\n- $r1 = range(10, 100, 5)\n- $r2 = range(5, 50, 5)\n\n#conditions:\n- is_int(n * p * r1/100)\n- is_int(n * p * (1 + r1/100) * (1 - r2/100))\n\n#answer: ensure_int(n * p * (1 + r1/100) * (1 - r2/100))",
+    "question_annotated": "تشتري {name,مريم} {n,8} أسهم بسعر {cur,ريال}{p,8} للسهم الواحد. يرتفع سعر السهم بنسبة {r1,50}% في السنة الأولى التي تحتفظ فيها {name,مريم} بالأسهم، ثم ينخفض بنسبة {r2,25}% في السنة الثانية. فما القيمة النهائية لجميع أسهم {name,مريم}؟\n\n#init:\n- name = sample(names_female)\n- cur = sample(currencies_sym)\n- $n = range(5, 20)\n- $p = range(5, 100)\n- $r1 = range(10, 100, 5)\n- $r2 = range(5, 50, 5)\n\n#conditions:\n- is_int(n * p * r1/100)\n- is_int(n * p * (1 + r1/100) * (1 - r2/100))\n\n#answer: int(n * p * (1 + r1/100) * (1 - r2/100))",
     "count": 100
   },
   {
     "id": 85,
-    "question_annotated": "إذا كان لدى {name1,أحمد} و{name2,خالد} معًا {total,100} {unit,قدم} من السياج، واتفقا على تقسيمه بحيث يحصل {name2,خالد} على {diff,60} {unit,قدم} أكثر من {name1,أحمد}، فكم يتبقّى ل{name1,أحمد}؟\n\n#init:\n- name1, name2 = sample(names, 2)\n- unit = sample([\"قدم\", \"ياردة\", \"متر\"])\n- $total = range(100, 1000, 20)\n- $diff = range(20, 200, 10)\n\n#conditions:\n- total - diff > 10\n- is_int((total - diff) / 2)\n\n#answer: (total - diff) // 2",
+    "question_annotated": "إذا كان لدى {name1,أحمد} و{name2,خالد} معًا {total,100} {unit,سنتيمتر} من السياج، واتفقا على تقسيمه بحيث يحصل {name2,خالد} على {diff,60} {unit,سنتيمتر} أكثر من {name1,أحمد}، فكم يتبقّى ل{name1,أحمد}؟\n\n#init:\n- name1, name2 = sample(names, 2)\n- unit = sample([\"سنتيمتر\", \"متر\"])\n- $total = range(100, 1000, 20)\n- $diff = range(20, 200, 10)\n\n#conditions:\n- total - diff > 10\n- is_int((total - diff) / 2)\n\n#answer: (total - diff) // 2",
     "count": 100
   },
   {
@@ -436,12 +436,12 @@
   },
   {
     "id": 87,
-    "question_annotated": "أطول زحليقة مائية في {park_name,عالم الرذاذ} يبلغ طولها {l1,300} {unit,يارد}، وينزلق الناس عليها بسرعة {s1,60} {unit,يارد}/دقيقة. أما ثاني أطول زحليقة مائية فيبلغ طولها {l2,240} {unit,يارد}، لكنها أكثر انحدارًا، لذا ينزلق الناس عليها بسرعة {s2,80} {unit,يارد}/دقيقة. كم من الوقت الإضافي يستغرقه ركوب أطول زحليقة مقارنةً بثاني أطول زحليقة؟\n\n#init:\n- park_name = sample([\"عالم الرذاذ\", \"مغامرة الماء\", \"أرض العجائب المائية\", \"مملكة نبتون\"])\n- unit = sample(['يارد', 'متر'])\n- $l1 = range(250, 401, 10)\n- $l2 = range(200, 301, 10)\n- $s1 = range(40, 81, 5)\n- $s2 = range(60, 101, 5)\n\n#conditions:\n- l1 > l2\n- s2 > s1\n- is_int(l1/s1)\n- is_int(l2/s2)\n- l1/s1 > l2/s2\n\n#answer: l1/s1 - l2/s2",
+    "question_annotated": "أطول زحليقة مائية في {park_name,عالم الرذاذ} يبلغ طولها {l1,300} {unit,متر}، وينزلق الناس عليها بسرعة {s1,60} {unit,متر}/دقيقة. أما ثاني أطول زحليقة مائية فيبلغ طولها {l2,240} {unit,متر}، لكنها أكثر انحدارًا، لذا ينزلق الناس عليها بسرعة {s2,80} {unit,متر}/دقيقة. كم من الوقت الإضافي يستغرقه ركوب أطول زحليقة مقارنةً بثاني أطول زحليقة؟\n\n#init:\n- park_name = sample([\"عالم الرذاذ\", \"مغامرة الماء\", \"أرض العجائب المائية\", \"مملكة نبتون\"])\n- unit = sample(['متر'])\n- $l1 = range(250, 401, 10)\n- $l2 = range(200, 301, 10)\n- $s1 = range(40, 81, 5)\n- $s2 = range(60, 101, 5)\n\n#conditions:\n- l1 > l2\n- s2 > s1\n- is_int(l1/s1)\n- is_int(l2/s2)\n- l1/s1 > l2/s2\n\n#answer: l1/s1 - l2/s2",
     "count": 100
   },
   {
     "id": 88,
-    "question_annotated": "تستطيع {name,سارة} الجري {mult_run_txt,أربع مرات} أسرع من مشيها، لكنها تستطيع القفز بسرعة تساوي {frac_skip_txt,نصف} سرعة جريها. إذا كانت تقفز بسرعة {skip_speed,3} ميل في الساعة، فكم ميلًا تستطيع أن تقطع في {total_time_txt,ستة} ساعات إذا قضت {frac_run_txt,ثُلث} الوقت في الجري و{frac_walk_txt,ثُلثان} الوقت في المشي؟\n\n#init:\n- name = sample(names_female)\n- mult_run_txt, mult_run_val = sample(multi_times)\n- frac_skip_txt, frac_skip_val = sample(fraction_alnum)\n- $skip_speed = range(2, 10)\n- total_time_txt, total_time_val = range_str(4, 12, 2, numbers)\n- frac_run_txt, frac_run_val = sample(fraction_alnum)\n- frac_walk_txt, frac_walk_val = sample(fraction_alnum)\n\n#conditions:\n- frac_run_val + frac_walk_val == 1\n- skip_speed / frac_skip_val < 13\n- is_int(total_time_val * frac_walk_val * (skip_speed / frac_skip_val / mult_run_val))\n- is_int(skip_speed / frac_skip_val)\n- is_int(total_time_val * frac_run_val)\n- is_int(total_time_val * frac_walk_val)\n\n#answer: int((total_time_val * frac_run_val * (skip_speed / frac_skip_val)) + (total_time_val * frac_walk_val * (skip_speed / frac_skip_val / mult_run_val)))",
+    "question_annotated": "تستطيع {name,سارة} الجري {mult_run_txt,أربع مرات} أسرع من مشيها، لكنها تستطيع القفز بسرعة تساوي {frac_skip_txt,نصف} سرعة جريها. إذا كانت تقفز بسرعة {skip_speed,3} كيلومتر في الساعة، فكم كيلومترًا تستطيع أن تقطع في {total_time_txt,ستة} ساعات إذا قضت {frac_run_txt,ثُلث} الوقت في الجري و{frac_walk_txt,ثُلثان} الوقت في المشي؟\n\n#init:\n- name = sample(names_female)\n- mult_run_txt, mult_run_val = sample(multi_times)\n- frac_skip_txt, frac_skip_val = sample(fraction_alnum)\n- $skip_speed = range(2, 10)\n- total_time_txt, total_time_val = range_str(4, 12, 2, numbers)\n- frac_run_txt, frac_run_val = sample(fraction_alnum)\n- frac_walk_txt, frac_walk_val = sample(fraction_alnum)\n\n#conditions:\n- frac_run_val + frac_walk_val == 1\n- skip_speed / frac_skip_val < 13\n- is_int(total_time_val * frac_walk_val * (skip_speed / frac_skip_val / mult_run_val))\n- is_int(skip_speed / frac_skip_val)\n- is_int(total_time_val * frac_run_val)\n- is_int(total_time_val * frac_walk_val)\n\n#answer: int((total_time_val * frac_run_val * (skip_speed / frac_skip_val)) + (total_time_val * frac_walk_val * (skip_speed / frac_skip_val / mult_run_val)))",
     "count": 100
   },
   {
@@ -466,12 +466,12 @@
   },
   {
     "id": 93,
-    "question_annotated": "عندما يكون الماء باردًا، يسبح {name,أحمد} مسافة {unit,ميل} واحد في {t1,16} دقيقة. وعندما يكون الماء دافئًا، يسبح {name,أحمد} مسافة {unit,ميل} واحد في زمن يزيد بمقدار {n,2} دقيقة عن {mult_txt,مرتين} ذلك الزمن. فكم من الوقت الإضافي يستغرقه {name,أحمد} لسباحة {d,3} {unit,ميل} في يوم حار مقارنةً بيوم بارد؟\n\n#init:\n- name = sample(names)\n- unit = sample(['ميل', 'كيلومتر'])\n- $t1 = range(10, 50)\n- $n = range(1, 10)\n- mult_txt, mult_val = sample(multi_times)\n- $d = range(2, 10)\n\n#conditions:\n- t1 < 60\n- n + mult_val * t1 < 60\n- d * (n + mult_val * t1) - d * t1 > 0\n\n#answer: d * (n + mult_val * t1) - d * t1",
+    "question_annotated": "عندما يكون الماء باردًا، يسبح {name,أحمد} مسافة {unit,كيلومتر} واحد في {t1,16} دقيقة. وعندما يكون الماء دافئًا، يسبح {name,أحمد} مسافة {unit,كيلومتر} واحد في زمن يزيد بمقدار {n,2} دقيقة عن {mult_txt,مرتين} ذلك الزمن. فكم من الوقت الإضافي يستغرقه {name,أحمد} لسباحة {d,3} {unit,كيلومتر} في يوم حار مقارنةً بيوم بارد؟\n\n#init:\n- name = sample(names)\n- unit = sample(['كيلومتر'])\n- $t1 = range(10, 50)\n- $n = range(1, 10)\n- mult_txt, mult_val = sample(multi_times)\n- $d = range(2, 10)\n\n#conditions:\n- t1 < 60\n- n + mult_val * t1 < 60\n- d * (n + mult_val * t1) - d * t1 > 0\n\n#answer: d * (n + mult_val * t1) - d * t1",
     "count": 100
   },
   {
     "id": 94,
-    "question_annotated": "يتقدم {n,100} شخص للحصول على وظيفة في {company,غوغل}. ومن بين المتقدمين، يحصل {p1,30}% فقط على مقابلات. ومن بين الذين يحصلون على مقابلات، يحصل {p2,20}% على عرض عمل. ومن بين الذين يحصلون على عرض عمل، يقبل {frac_txt,ثُلث} الأشخاص الوظيفة. فكم عدد الأشخاص الذين يقبلون الوظيفة؟\n\n#init:\n- company = sample([\"مايكروسوفت\", \"آبل\", \"أمازون\", \"فيسبوك\", \"نتفليكس\", \"تسلا\", \"مايكروسوفت\"])\n- $n = range(100, 1001, 10)\n- $p1 = range(10, 51)\n- $p2 = range(10, 51)\n- frac_txt, frac_val = sample(fraction_alnum)\n\n#conditions:\n- is_int(n * (p1/100))\n- is_int(n * (p1/100) * (p2/100))\n- is_int(n * (p1/100) * (p2/100) * frac_val)\n\n#answer: ensure_int(n * (p1/100) * (p2/100) * frac_val)",
+    "question_annotated": "يتقدم {n,100} شخص للحصول على وظيفة في {company,غوغل}. ومن بين المتقدمين، يحصل {p1,30}% فقط على مقابلات. ومن بين الذين يحصلون على مقابلات، يحصل {p2,20}% على عرض عمل. ومن بين الذين يحصلون على عرض عمل، يقبل {frac_txt,ثُلث} الأشخاص الوظيفة. فكم عدد الأشخاص الذين يقبلون الوظيفة؟\n\n#init:\n- company = sample([\"مايكروسوفت\", \"آبل\", \"أمازون\", \"فيسبوك\", \"نتفليكس\", \"تسلا\", \"مايكروسوفت\"])\n- $n = range(100, 1001, 10)\n- $p1 = range(10, 51)\n- $p2 = range(10, 51)\n- frac_txt, frac_val = sample(fraction_alnum)\n\n#conditions:\n- is_int(n * (p1/100))\n- is_int(n * (p1/100) * (p2/100))\n- is_int(n * (p1/100) * (p2/100) * frac_val)\n\n#answer: int(n * (p1/100) * (p2/100) * frac_val)",
     "count": 100
   },
   {
@@ -491,7 +491,7 @@
   },
   {
     "id": 98,
-    "question_annotated": "يصيب {disease,وباء} {n0_txt,عشرة} أشخاص. وفي كل يوم، يُعدي كل شخص مصاب {r_txt,ستة} أشخاص آخرين. فكم عدد المصابين بعد ثلاثة أيام؟\n\n#init:\n- disease = sample(['فيروس', 'بكتيريا', 'طفيلي', 'عدوى'])\n- n0_txt, n0_val = range_str(5, 22, 1, numbers)\n- r_txt, r_val = range_str(2, 8, 1, numbers)\n#conditions:\n- n0_val * (r_val + 1)**3 < 20000\n\n#answer: n0_val * (r_val + 1)**3",
+    "question_annotated": "يصيب {disease,وباء} {n0_txt,عشرة} أشخاص. وفي كل يوم، يُعدي كل شخص مصاب {r_txt,ستة} أشخاص آخرين. فكم عدد المصابين بعد {d_txt,ثلاثة} أيام؟\n\n#init:\n- disease = sample(['فيروس', 'بكتيريا', 'طفيلي', 'عدوى'])\n- n0_txt, n0_val = range_str(5, 21, 1, numbers)\n- r_txt, r_val = range_str(2, 8, 1, numbers)\n- d_txt, d_val = range_str(3, 5, 1, numbers)\n\n#conditions:\n- n0_val * (r_val + 1)**d_val < 20000\n\n#answer: n0_val * (r_val + 1)**d_val",
     "count": 100
   },
   {
