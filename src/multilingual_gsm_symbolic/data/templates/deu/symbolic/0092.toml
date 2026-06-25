@@ -16,12 +16,12 @@ Prinz {name1,Theodor} tötete {n1,100} {creature,Drachen} mit seinem mächtigen 
 
 #init:
 - name1, name2, name3, name4 = sample(names_male, 4)
-- creature = sample(["orker", "trolde", "gobliner", "giganter"])
-- weapon1 = sample(["sværd", "kampøkse", "krigshammer"])
-- weapon2 = sample(["spyd", "lanse", "hellebard"])
-- weapon3 = sample(["rusten jernøkse", "sten hammer", "træ hammer"])
-- weapon4 = sample(["sværd", "økse", "hammer"])
-- weapon5 = sample(["neglefil", "smørkniv", "ske", "fjer"])
+- creature = sample(["Orks", "Trolle", "Goblins", "Riesen"])
+- weapon1 = sample(["Schwert", "Kampfaxt", "Kriegshammer"])
+- weapon2 = sample(["Speer", "Lanze", "Hellebarde"])
+- weapon3 = sample(["rostigen Eisenaxt", "Steinhammer", "Holzhammer"])
+- weapon4 = sample(["Schwert", "Axt", "Hammer"])
+- weapon5 = sample(["Nagelfeile", "Buttermesser", "Löffel", "Feder"])
 - $n1 = range(50, 501, 50)
 - frac1_txt, frac1_val = sample(fraction_alnum)
 - mult1_txt, mult1_val = sample(multi_times)
