@@ -15,7 +15,7 @@ question_annotated = """
 {n,100} Personen bewerben sich um eine Stelle bei {company,Google}. Von denen, die sich bewerben, erhalten nur {p1,30}% Einladungen zum Vorstellungsgespräch. Von denen, die ein Vorstellungsgespräch bekommen, erhalten {p2,20}% ein Jobangebot. Von denen, die ein Jobangebot erhalten, akzeptiert {frac_txt,ein Drittel} der Personen die Stelle. Wie viele Personen akzeptieren die Stelle?
 
 #init:
-- company = sample(["Salling Group", "LEGO", "Søstrene Grene", "Facebook", "Apple", "Rema1000", "Hatting"])
+- company = sample(["Volkswagen", "LEGO", "C&A", "BMW", "Apple", "Aldi", "H&M"])
 - $n = range(100, 1001, 10)
 - $p1 = range(10, 51)
 - $p2 = range(10, 51)
